@@ -1,48 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Young+Serif&display=swap');
 /*marrom: #654133 rosa: #CD7A98 creme:#FFF0E1*/
 
-
-
 * {
   box-sizing: border-box;
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: rgb(255, 240, 225);
 }
 
-
-#logo { /*Imagens do meu rodapé*/
+#logo { /* logo do topo do site */
   width: 140px;
-  /* Ajusta a largura */
-  height: auto;
-  /* Mantém a proporção da imagem para não amassar */
-  margin-right: 20px;
-  /* Dá um espaço entre a logo e a barra de busca *//
+  max-width: 100%; /* a imagem nunca passa da largura da tela */
+  height: auto; /* mantém a proporção da imagem para não amassar */
+  margin-right: 20px; /* dá um espaço entre a logo e a barra de busca */
 }
 
 .menu {
   display: flex;
-  /*serve para centralizar os elementos*/
+  flex-wrap: wrap; /* se os itens não couberem, descem para a linha de baixo */
   background-color: rgb(205, 122, 152);
   width: 100%;
-  /*Esse aqui serve para ocupar toda a largura da minha tela*/
-  height: 150px;
-  /*Serve para a altura*/
+  min-height: 150px; /* antes era height fixo, agora o menu cresce se precisar */
+  padding: 15px;
+  gap: 15px;
   justify-content: space-around;
-  /* Alinha os itens horizontalmente com espaço entre eles */
   align-items: center;
-  /* Alinha os itens verticalmente ao centro */
   font-family: "Young Serif", serif;
 }
 
+.busca {
+  flex: 1; /* ocupa o espaço que sobrar no menu */
+  max-width: 500px;
+  min-width: 200px;
+}
 
 .busca input {
-  width: 500px;
+  width: 100%; /* antes era 500px, agora acompanha o espaço disponível */
   padding: 10px;
+  padding-right: 35px; /* deixa espaço para a lupa não ficar em cima do texto */
   border-radius: 20px;
   border: none;
   margin-bottom: 15px;
@@ -54,10 +52,16 @@ body {
   font-size: 18px;
 }
 
+nav {
+  display: flex;
+  flex-wrap: wrap; /* os links quebram de linha se faltar espaço */
+  justify-content: center;
+}
+
 nav a {
   text-decoration: none;
   color: rgb(255, 240, 225);
-  margin: 20px;
+  margin: 10px 15px;
   font-size: 18px;
 }
 
@@ -66,9 +70,11 @@ footer {
   flex-direction: column;
   background-color: rgb(205, 122, 152);
   width: 100%;
-  height: 150px;
-  margin-top: 200px;
+  min-height: 150px; /* antes era height fixo */
+  padding: 15px;
+  margin-top: clamp(60px, 15vw, 200px); /* espaço acima do rodapé diminui no celular */
   align-items: center;
+  text-align: center;
 }
 
 footer img {
@@ -78,80 +84,131 @@ footer img {
 }
 
 #contato {
- font-family: "Young Serif", serif;
+  font-family: "Young Serif", serif;
   color: #FFF0E1;
-  font-size: 25px;
+  font-size: clamp(1.3rem, 4vw, 1.6rem); /* o tamanho se ajusta à tela */
   margin-top: 20px;
 }
 
- #Secao_um{
-    color: #654133;
+#Secao_um {
+  color: #654133;
+  text-align: center;
+  margin-top: clamp(40px, 10vw, 100px); /* espaço que diminui em telas menores */
+  font-family: "Young Serif", serif;
+  font-size: 20px;
+}
+
+#Secao_um h2 {
+  text-align: left;
+  margin-left: clamp(15px, 4vw, 40px); /* antes era 40px fixo */
+}
+
+.barra_produtos {
+  display: inline-block; /* os produtos ficam lado a lado e descem de linha quando falta espaço */
+  font-size: 20px;
+  padding: 9px;
+  max-width: 100%;
+}
+
+.barra_produtos img {
+  display: flex;
+  width: 246px;
+  max-width: 100%; /* em telas pequenas a imagem encolhe em vez de estourar */
+  height: auto;
+  aspect-ratio: 1 / 1; /* mantém a imagem quadrada, como os 246px x 246px de antes */
+  padding: 10px;
+  object-fit: cover;
+}
+
+.barra_produtos:hover img {
+  transform: scale(1.03);
+  transition: 0.6s;
+}
+
+.descricao {
+  font-family: "Young Serif", serif;
+  font-size: 14px;
+  color: #654133;
+}
+
+.linha_preço {
+  display: flex;
+  flex-wrap: wrap; /* preço e desconto descem de linha se não couberem */
+  align-items: center;
+}
+
+.preco {
+  font-family: "Young Serif", serif;
+  font-weight: bold;
+  font-size: 22px;
+  color: #654133;
+  margin-left: 4px;
+}
+
+.desconto {
+  font-family: "Young Serif", serif;
+  font-size: 17px;
+  color: rgb(205, 122, 152);
+  margin-left: 15px;
+}
+
+.parcela {
+  font-family: "Young Serif", serif;
+  font-size: 11px;
+  color: rgb(205, 122, 152);
+}
+
+.barra_produtos button {
+  background-color: rgb(205, 122, 152);
+  color: white;
+  font-family: "Young Serif", serif;
+  font-size: 12px;
+  border: none;
+  margin-top: 15px;
+  padding: 6px 11px;
+  border-radius: 8px;
+}
+
+/* tablets e celulares grandes */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column; /* logo, busca e links ficam um embaixo do outro */
     text-align: center;
-    margin-top: 100px;
-    font-family: "Young Serif", serif;
-    font-size: 20px;
-  }
-  #Secao_um h2{
-    text-align: left;
-    margin-left: 40px;
-  }
-  .barra_produtos{
-    display: inline-block;
-    font-size: 20px;
-    padding: 9px;
-  }
-  .barra_produtos img{
-    display: flex;
-    height: 246px;
-    width: 246px;
-    padding: 10px;
-    object-fit: cover;
   }
 
-  .barra_produtos:hover img{
-    transform: scale(1.03);
-    transition: 0.6s;
+  #logo {
+    margin-right: 0; /* sem a margem, a logo fica centralizada */
   }
 
-  .descricao{
-    font-family:"Young Serif", serif;
-    font-size: 14px;
-    color: #654133;
+  .busca {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* celulares pequenos */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 16px;
+    margin: 8px 10px;
   }
 
-  .linha_preço{
-    display: flex;
-    align-items: center;
+  #Secao_um {
+    font-size: 18px;
   }
 
-  .preco{
-    font-family:"Young Serif", serif;
-    font-weight: bold;
-    font-size: 22px;
-    color: #654133;
-    margin-left: 4px;
+  .barra_produtos {
+    display: block; /* um produto por linha, centralizado */
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
   }
 
-.desconto{
-    font-family:"Young Serif", serif;
-    font-size:17px;
-    color:rgb(205, 122, 152);
-    margin-left: 15px;
+  .barra_produtos img {
+    width: 100%;
   }
 
-  .parcela{
-    font-family:"Young Serif", serif;
-    font-size: 11px;
-    color:rgb(205, 122, 152);
+  .linha_preço {
+    justify-content: center;
   }
-
-  .barra_produtos button{
-    background-color: rgb(205, 122, 152);
-    color: white;
-    font-family:  "Young Serif", serif;
-    font-size: 12px;
-    border: none;
-    margin-top: 15px;
-    padding: 6px 11px;
-    border-radius: 8px;
-  }
+}

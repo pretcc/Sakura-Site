@@ -1,27 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Young+Serif&display=swap');
 /*marrom: #654133 rosa: #CD7A98 creme:#FFF0E1*/
-
-
 
 h3 {
   font-family: "Young Serif", serif;
   color: rgb(255, 240, 225);
-  font-size: 25px;
+  /* cresce e diminui conforme a tela: mínimo 1.3rem, máximo 1.6rem */
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
   margin-top: 20px;
   text-align: center;
+  padding: 0 15px;
 }
 
 #redesociais {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap; /* se não couber, os ícones vão para a linha de baixo */
   align-items: center;
   justify-content: center;
+  gap: 15px;
+  padding: 10px;
 }
 
 .rede {
-  width: 25px;
+  width: 1.6rem;
+  height: auto;
   display: block;
   object-fit: cover;
-  margin: 20px;
+  margin: 10px;
+}
+
+/* tablets e telas maiores */
+@media (min-width: 768px) {
+  #redesociais {
+    gap: 25px;
+  }
+
+  .rede {
+    width: 2rem;
+  }
+}
+
+/* celulares pequenos */
+@media (max-width: 400px) {
+  .rede {
+    width: 1.4rem;
+    margin: 6px;
+  }
 }

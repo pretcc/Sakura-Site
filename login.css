@@ -1,108 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Young+Serif&display=swap');
 /*marrom: #654133 rosa: #CD7A98 creme:#FFF0E1*/
 
 * {
   box-sizing: border-box; /* serve para incluir o padding e a borda dentro da largura total do elemento */
-  margin: 0%; /* serve para remover a margem padrão dos elementos */
-  padding: 0%; /* serve para remover o preenchimento padrão dos elementos */
+  margin: 0; /* serve para remover a margem padrão dos elementos */
+  padding: 0; /* serve para remover o preenchimento padrão dos elementos */
 }
 
 body {
   background-color: rgb(255, 240, 225); /* serve para definir a cor de fundo da página */
-
 }
 
 img { /* serve para definir as propriedades das imagens */
-  width: 140px;  /* Define a largura da imagem */
-  /* Ajuste a largura */
-  height: auto;
-  /* Mantém a proporção da imagem para não amassar */
-  margin-right: 20px;
-  /* Dá um espaço entre a logo e a barra de busca */
+  width: 140px;
+  max-width: 100%; /* a imagem nunca passa da largura da tela */
+  height: auto; /* mantém a proporção da imagem para não amassar */
+  margin-right: 20px; /* dá um espaço entre a logo e a barra de busca */
 }
 
 .menu {
   display: flex;
-  /*serve para centralizar os elementos*/
+  flex-wrap: wrap; /* se os itens não couberem, eles descem para a linha de baixo */
   background-color: rgb(205, 122, 152);
   width: 100%;
-  /*Esse aqui serve para ocupar toda a largura da minha tela*/
-  height: 150px;
-  /*Serve para a altura*/
+  min-height: 150px; /* antes era height fixo, agora o menu cresce se precisar */
+  padding: 15px;
+  gap: 15px;
   justify-content: space-around;
-  /* Alinha os itens horizontalmente com espaço entre eles */
   align-items: center;
-  /* Alinha os itens verticalmente ao centro */
   font-family: "Young Serif", serif;
 }
 
 h1 {
   color: rgb(205, 122, 152);
-  text-align: center; /* esse aqui serve para centralizar o texto*/
-  margin: 80px; /* serve para criar um espaço externo ao redor do elemento */
-  font-size: 40px; /* serve para definir o tamanho da fonte do texto */
-  font-family: "Young Serif", serif; /* serve para definir a fonte do texto */
+  text-align: center;
+  margin: clamp(30px, 8vw, 80px); /* espaço que diminui em telas menores */
+  font-size: clamp(1.6rem, 5vw, 2.5rem); /* tamanho do texto se ajusta à tela */
+  font-family: "Young Serif", serif;
 }
 
-
+.busca {
+  flex: 1; /* ocupa o espaço que sobrar no menu */
+  max-width: 500px;
+  min-width: 200px;
+}
 
 .busca input {
-  width: 500px; /* serve para ajeitar a minha largura*/
-  padding: 10px; /* é o meu espaço interno do meu elemento */
-  border-radius: 20px; /*raio da borda do elemento do meu site*/
-  border: none; /*serve para remover o sublinhado*/
-  margin-bottom: 15px; /*serve para criar espaços externo abaixo do elemento*/
-  background-image: url(./Imagem/Lupa.png); /*serve para colocar a imagem de fundo no meu input*/
-  background-size: 18px;  /*serve para definir o tamanho da imagem de fundo*/
-  background-position: right; /*serve para posicionar a imagem de fundo à direita do input*/
-  background-repeat: no-repeat; /*serve para evitar que a imagem de fundo se repita*/
-  font-family: "Cormorant Garamond", serif; 
-  font-size: 18px; /* serve para definir o tamanho da fonte do texto dentro do input */
+  width: 100%; /* antes era 500px, agora acompanha o espaço disponível */
+  padding: 10px;
+  padding-right: 35px; /* deixa espaço para a lupa não ficar em cima do texto */
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 15px;
+  background-image: url(./Imagem/Lupa.png);
+  background-size: 18px;
+  background-position: right;
+  background-repeat: no-repeat;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap; /* os links quebram de linha se faltar espaço */
+  justify-content: center;
 }
 
 nav a {
-  text-decoration: none; /* serve para remover o sublinhado dos links */
+  text-decoration: none;
   color: rgb(255, 240, 225);
-  margin: 20px;  /* serve para criar um espaço externo ao redor dos links */
-  font-size: 18px; /* serve para definir o tamanho da fonte dos links */
+  margin: 10px 15px;
+  font-size: 18px;
 }
 
 label {
   color: rgb(101, 65, 51);
-  font-size: 20px; /* serve para definir o tamanho da fonte do texto */
+  font-size: 20px;
   font-family: "Young Serif", serif;
 }
 
 .dados {
-  display: flex; /* serve para organizar os elementos em um layout flexível */
-  flex-direction: column;  /* serve para organizar os elementos em uma coluna */
-  align-items: center; /* serve para centralizar os elementos horizontalmente */
-  width: 100%; /* serve para ocupar toda a largura disponível */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px; /* evita que os campos encostem nas bordas do celular */
 }
 
 .dados input {
-  width: 600px; /* serve para definir a largura dos campos de entrada */
-  min-height: 25px;  /* serve para definir a altura mínima dos campos de entrada */
-  padding: 12px; /* serve para criar um espaço interno ao redor do conteúdo dos campos de entrada */
-  border-radius: 20px; /* serve para criar bordas arredondadas nos campos de entrada */
-  margin: 20px; /* serve para criar um espaço externo ao redor dos campos de entrada */
+  width: 100%; /* antes era 600px */
+  max-width: 600px; /* no computador continua com o mesmo tamanho de antes */
+  min-height: 25px;
+  padding: 12px;
+  border-radius: 20px;
+  margin: 20px 0;
   border: 2px solid rgb(205, 122, 152);
-  outline: none; /* serve para remover a borda de foco padrão dos campos de entrada */
+  outline: none;
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px; /* serve para definir o tamanho da fonte do texto dentro dos campos de entrada */
+  font-size: 18px;
 }
 
-.dados button{ /* serve para definir as propriedades do botão de login */
-  width: 200px; /* serve para definir a largura do botão de login */
-  padding: 12px; /* serve para criar um espaço interno ao redor do conteúdo do botão de login */
+.dados button {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
   background-color: rgb(205, 122, 152);
   color: rgb(255, 240, 225);
-  border: none; /* serve para remover a borda do botão de login */
-  border-radius: 20px; /* serve para criar bordas arredondadas no botão de login */
-  margin-top: 10px; /* serve para criar um espaço externo acima do botão de login */
+  border: none;
+  border-radius: 20px;
+  margin-top: 10px;
   font-family: "Young Serif", serif;
-  font-size: 15px; /* serve para definir o tamanho da fonte do texto dentro do botão de login */
+  font-size: 15px;
 }
 
 footer {
@@ -110,20 +118,56 @@ footer {
   flex-direction: column;
   background-color: rgb(205, 122, 152);
   width: 100%;
-  height: 150px;
-  margin-top: 200px;
+  min-height: 150px; /* antes era height fixo */
+  padding: 15px;
+  margin-top: clamp(60px, 15vw, 200px); /* espaço acima do rodapé diminui no celular */
   align-items: center;
+  text-align: center;
 }
 
 footer img {
   width: 25px;
-  object-fit: cover; /* serve para garantir que a imagem seja redimensionada corretamente sem distorção */
+  object-fit: cover;
   margin: 10px;
 }
 
 h2 {
   font-family: "Young Serif", serif;
-  color:rgb(255, 240, 225);
-  font-size: 25px;
-  margin-top: 20px; /* serve para criar um espaço externo acima do título */
+  color: rgb(255, 240, 225);
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  margin-top: 20px;
+}
+
+/* tablets e celulares grandes */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column; /* logo, busca e links ficam um embaixo do outro */
+    text-align: center;
+  }
+
+  img {
+    margin-right: 0; /* sem a margem, a logo fica centralizada */
+  }
+
+  .busca {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* celulares pequenos */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 16px;
+    margin: 8px 10px;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .dados input {
+    font-size: 16px;
+    margin: 12px 0;
+  }
 }
